@@ -12,28 +12,17 @@ module.exports = {
             if (filter.id) {
                 return await db('stores').where({ id: filter.id }).first()
             } else if (filter.email) {
-                return await db('stores').where({ email: filter.email }).first()
-            }
+                return await db('stores')
+                .whereExists(db.select('*').from('users')
+                .where('stores.user', `${filter.email}`)
+            )}
         },
     },
+
     Mutation: {
         async createStore(_, { data }) {
-            const salt = bcrypt.genSaltSync()
-            data.password = bcrypt.hashSync(data.password, salt)
-            const store = { ...data }
+            const store = data
             return await (await db('stores').insert(store).returning("*"))[0]
-        },
-
-        async loginStore(_, { data }) {
-            const store = await db('stores').where({ email: data.email }).first()
-            if (!store) {
-                return null
-            }
-            const valid = await bcrypt.compareSync(data.password, store.password)
-            if (!valid) {
-                return null
-            }
-            return store
         },
 
         async updateStore(_, { id, data }) {
