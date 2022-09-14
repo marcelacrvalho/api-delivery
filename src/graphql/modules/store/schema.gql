@@ -1,35 +1,19 @@
 type Store {
     id: Int
-    name: String
-    email: String
-    password: String
-    open: String
-    payment: String
+    user: User
     active: Boolean
-    category: String
-    homecare: Boolean
-    location: String
-    neighborhood: String
-    street: String
-    number: String
-    firebaseToken: String
+    deliveryTime: Double
+    withdrawalTime: Double
+    isOpen: Boolean
 }
 
 input StoreInput {
     id: Int
-    name: String
-    email: String
-    password: String
-    open: String
-    payment: String
+    user: User
     active: Boolean
-    category: String
-    homecare: Boolean
-    location: String
-    neighborhood: String
-    street: String
-    number: String
-    firebaseToken: String
+    deliveryTime: Double
+    withdrawalTime: Double
+    isOpen: Boolean
 }
 
 input StoreLoginInput {
@@ -40,7 +24,6 @@ input StoreLoginInput {
 input StoreFilter {
     id: Int
     email: String
-    firebaseToken: String
 }
 
  type Query {

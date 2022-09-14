@@ -6,6 +6,7 @@ exports.up = function(knex) {
         table.boolean('active').defaultTo(true)
         table.double('deliveryTime').defaultTo(0.3)
         table.double('withdrawalTime').defaultTo(0.3)
+        table.boolean('isOpen').defaultTo(false)
 
         table.foreign('user').references('id').inTable('users').onDelete('cascade').onUpdate('cascade')
     });
