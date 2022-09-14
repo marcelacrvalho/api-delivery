@@ -8,7 +8,7 @@ exports.up = function(knex) {
         table.string('coupom')
         table.double('totalPrice')
         table.boolean('active').defaultTo(true)
-        table.string('ship').defaultTo('Entrega')
+        table.string('ship').defaultTo('Delivery')
 
         table.foreign('store').references('id').inTable('stores').onDelete('cascade').onUpdate('cascade')
         table.foreign('user').references('id').inTable('users').onDelete('cascade').onUpdate('cascade')
